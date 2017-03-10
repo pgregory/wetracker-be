@@ -129,3 +129,18 @@ app.get("/songs/:id/file", function(req, res) {
   });
 });
 
+/* "/demosongs"
+ * GET: finds all demo songs
+ */
+
+app.get("/demosongs", function(req, res) {
+  db.collection(SONGS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get demo songs.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
+
